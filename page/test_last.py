@@ -5,7 +5,6 @@ from selenium import webdriver
 from Base.logger import Log
 class Yscy_Last(unittest.TestCase):
 
-
    def setUp(self,browser='chrome'):
 
        print("开始测试")
@@ -57,7 +56,7 @@ class Yscy_Last(unittest.TestCase):
    def test_06(self):
       # 热门测算链接跳转校验
        bottom_hot =self.last.bottom_hotskip()
-       free_url = "https://zx.xhrlzab.cn/cesuandaquan/shopsite?schannel=jieguoyewl&channel=test&combo_goods_id=13"
+       free_url = "/cesuandaquan/shopsite"
        self.assertEqual(bottom_hot, free_url)
 
    def test_07(self):
@@ -95,7 +94,7 @@ class Yscy_Last(unittest.TestCase):
    def test_13(self):
        #热门测算跳转
        guessing=self.last.guess()
-       guessurl="https://afb.hedebt.cn/qianshiyinyuan/index?schannel=jgyyishengcaiyun&channel=test"
+       guessurl="/qianshiyinyuan/index"
        self.assertEqual(guessing, guessurl)
 
 

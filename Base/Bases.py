@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import os,configparser
 class Base():
+    '''用于首页和支付页使用'''
     '''
     path =os.path.dirname(os.path.abspath("."))#找到代码存放路径
     cfpath = os.path.join(path,'F:\MyLifemoney\config\config.ini')#获取配置文件路径

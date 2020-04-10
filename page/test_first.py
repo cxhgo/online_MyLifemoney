@@ -14,61 +14,45 @@ class Yscy(unittest.TestCase):
         self.driver.implicitly_wait(10)
         #self.driver.maximize_window()
         #self.log =Log()
+        self.yscy = First(self.driver)
+        self.yscy.open()
 
      def test_01(self):
          #输入姓名，点击立即测算
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.sentname()
-         yscy.shouye_button()
+         self.yscy.sentname()
+         self.yscy.shouye_button()
 
      def test_02(self):
          #不选择和填写，点击立即测算
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.if_brithdaymessage()
+         self.yscy.if_brithdaymessage()
 
      def test_03(self):
          #性别切换
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.if_sex()
+         self.yscy.if_sex()
 
      def test_04(self):
          #跳转到用户协议
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.jump_01()
+         self.yscy.jump_01()
 
      def test_05(self):
         # 跳转到隐私协议
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.jump_02()
+         self.yscy.jump_02()
 
      def test_06(self):
          # 跳转到历史订单
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.history_order()
+         self.yscy.history_order()
 
      def test_07(self):
          # 跳转到客服咨询
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.question()
+         self.yscy.question()
 
      def test_08(self):
          # 跳转到热门测算
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.hot_masure()
+         self.yscy.hot_masure()
 
      def test_09(self):
          # 跳转到投诉
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.complain()
+         self.yscy.complain()
      '''
      def test_10(self):
         yscy = First(self.driver)
@@ -77,57 +61,39 @@ class Yscy(unittest.TestCase):
      '''
      def test_11(self):
          #输入特殊字符是否提示正确
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.sentother()
+         self.yscy.sentother()
 
      def test_12(self):
          #输入错误英文是否提示正确
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.sentenglish()
+         self.yscy.sentenglish()
 
      def test_13(self):
          #输入错误中文，是否提示正确
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.sentchinese()
+         self.yscy.sentchinese()
 
      def test_14(self):
          # 不勾选协议，是否提示正确
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.if_check()
+         self.yscy.if_check()
 
      def test_15(self):
          #是否取消选出生日期
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.if_cancel()
+         self.yscy.if_cancel()
 
      def test_16(self):
         # 是否确认出生日期，跳转到支付页
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.if_complete()
+         self.yscy.if_complete()
 
      def test_17(self):
          # 是否正确跳转支付页的客服链接
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.pay_customer()
+         self.yscy.pay_customer()
 
      def test_18(self):
          # 是否正确跳转各支付方式
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.pay()
+         self.yscy.pay()
 
      def test_19(self):
          # 支付页图片跳转支付是否正确
-         yscy = First(self.driver)
-         yscy.open()
-         yscy.pay_pictures()
+         self.yscy.pay_pictures()
 
      def tearDown(self):
          self.driver.quit()

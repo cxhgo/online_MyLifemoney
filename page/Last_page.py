@@ -60,42 +60,50 @@ class Last(Base):
     download_close=(By.XPATH," html/body/div[3]/div/div/div[1]/div")#下载引导框关闭按钮
 
     def __init__(self,driver,timeout=30):
+        '''初始化'''
         Base.__init__(self,driver,timeout)
 
     def open(self, url="https://sandbox-cs.lingjm365.com/yishengcaiyun/result?order_id=YSCY158406802109500000"):
+        '''打开界面'''
         return super().open(url)
 
     def bottom_kefu(self):
+        '''打开底部客服'''
         time.sleep(1)
         self.find_element(*self.kefu).click()
         time.sleep(3)
-        return Base.find_currenturl(self)
+        return Base.find_currenturl(self,0)
 
     def bottom_freequestion(self):
+        '''打开底部免费追问'''
         time.sleep(1)
         self.find_element(*self.free_question).click()
         time.sleep(3)
-        return Base.find_currenturl(self)
+        return Base.find_currenturl(self,0)
 
     def bottom_hotskip(self):
+        '''打开底部热门测算'''
         time.sleep(1)
         self.find_element(*self.hotguess).click()
         time.sleep(3)
-        return Base.find_currenturl(self)
+        return Base.find_currenturl(self,1)
 
     def one_box_disappear(self):
+        '''结果页进入时的引导弹框，填写手机、邮箱-选择跳过'''
         time.sleep(1)
         self.find_element(*self.box_pass).click()
         self.find_element(*self.no_lose).click()
         time.sleep(3)
 
     def top_secret_document(self):
+        '''跳转服务条款'''
         Last.one_box_disappear(self)
         self.find_element(*self.secret_document).click()
         time.sleep(3)
-        return Base.find_currenturl(self)
+        return Base.find_currenturl(self,0)
 
     def one_box(self):
+        '''结果页进入时的引导弹框，填写手机、邮箱-不填写点击提交'''
         time.sleep(2)
         self.find_element(*self.box_input).click()
         Base.if_tip(self,"邮箱或手机号至少填写一项！",self.box_tip)
@@ -103,6 +111,7 @@ class Last(Base):
 
 
     def one_box_check(self):
+        '''结果页进入时的引导弹框，填写手机、邮箱-不勾选用户协议'''
         time.sleep(2)
         self.find_element(*self.box_check).click()
         self.find_element(*self.box_input).click()
@@ -110,6 +119,7 @@ class Last(Base):
         time.sleep(1)
 
     def one_box_mail(self):
+        '''结果页进入时的引导弹框-填写手机、邮箱输入校验'''
         time.sleep(2)
         Base.send_keys(self, self.phonebox, "测试一下下")
         self.find_element(*self.box_input).click()
@@ -132,6 +142,7 @@ class Last(Base):
         # WebDriverWait(self.driver, 120).until(EC.element_to_be_clickable(self.mailbox_url))#判断某个元素中是否可见并且是enable的
 
     def sent_check(self):
+        '''结果页的手机和邮箱填写校验'''
         time.sleep(1)
         Last.one_box_disappear(self)
         self.find_element(*self.push_button).click()
@@ -160,6 +171,7 @@ class Last(Base):
         time.sleep(3)
 
     def sent_name(self):
+        '''结果页姓名输入校验'''
         time.sleep(1)
         Last.one_box_disappear(self)
         self.find_element(*self.commit_button).click()
@@ -191,7 +203,7 @@ class Last(Base):
         time.sleep(2)
 
     def praise_orno(self):
-        #点赞-反馈-反馈校验-关闭弹框-返回顶部-查看目录-跳转对应目录-关闭目录
+        '''点赞-反馈-反馈校验-关闭弹框-返回顶部-查看目录-跳转对应目录-关闭目录'''
         time.sleep(1)
         Last.one_box_disappear(self)
         Base.bottom_skip(self,"1000")
@@ -216,6 +228,7 @@ class Last(Base):
         time.sleep(2)
 
     def change(self):
+        '''结果页跳转到换一批-点击换一批按钮-选择链接跳转'''
         Last.one_box_disappear(self)
         Base.bottom_skip(self,"15500")
         time.sleep(4)
@@ -223,31 +236,30 @@ class Last(Base):
         time.sleep(1)
         self.find_element(*self.change_url).click()
         time.sleep(3)
-        return Base.find_currenturl(self)
+        return Base.find_currenturl(self,0)
 
     def guess(self):
+        '''结果页跳转到热门测算-关闭底部引导弹框-选择一个点击跳转'''
         Last.one_box_disappear(self)
         Base.bottom_skip(self,"20000")
         time.sleep(2)
         self.find_element(*self.download_close).click()
         self.find_element(*self.bottom_hotguess).click()
         time.sleep(2)
-        return Base.find_currenturl(self)
+        return Base.find_currenturl(self,1)
 
     def fineguess(self):
+        '''结果页跳转到热门测算-选择一个点击跳转'''
         Last.one_box_disappear(self)
         Base.bottom_skip(self,"14000")
         time.sleep(4)
         self.find_element(*self.fine_guess).click()
         time.sleep(2)
-        #return Base.find_currenturl(self)
-        current_url = self.driver.current_url
-        params = parse.urlparse(current_url).path#获取url的参数与参数值
-        return params
-        # shopping_id ="".join(params['id'])#将列表转化为字符串
-        # shopping_url="https://shop.zelingyu.cn/index.php?s=shop&c=order&a=checkout&id="+ shopping_id +"&channel=test"
+        return Base.find_currenturl(self,1)
+
 
     def shopping(self):
+        '''结果页商城弹框-取消-重新购买-各必填输入校验-提交跳转'''
         Last.one_box_disappear(self)
         Base.bottom_skip(self,"12000")
         time.sleep(2)
@@ -302,8 +314,10 @@ class Last(Base):
         time.sleep(2)
         #action=ActionChains(self.driver)
         #action.drag_and_drop(self.adress_beijing,self.adress_neimenggu).perform()鼠标拖动地区
-        current_url = self.driver.current_url
-        params = parse.parse_qs(parse.urlparse(current_url).query)#获取url的参数与参数值
+        # current_url = self.driver.current_url
+        # params = parse.parse_qs(parse.urlparse(current_url).query)#获取url的参数与参数值
+        current_url=Base.find_currenturl(self,0)
+        params=Base.find_currenturl(self,2)
         shopping_id ="".join(params['id'])#将列表转化为字符串
         shopping_url="https://shop.zelingyu.cn/index.php?s=shop&c=order&a=checkout&id="+ shopping_id +"&channel=test"
         if current_url == shopping_url:
