@@ -3,7 +3,9 @@ import unittest
 from page.Last_page import Last
 from selenium import webdriver
 from Base.logger import Log
+from selenium.webdriver.chrome.options import Options
 class Yscy_Last(unittest.TestCase):
+
 
    def setUp(self,browser='chrome'):
 
@@ -20,7 +22,11 @@ class Yscy_Last(unittest.TestCase):
           elif browser == 'chrome':
              # option = webdriver.ChromeOptions()
              # option.add_argument('--user-agent=iphone')
-             self.driver = webdriver.Chrome()
+             mobile_emulation = {"deviceName": "Galaxy S5"}  # 设置浏览器内支持的设备
+             options = webdriver.ChromeOptions()
+             options.add_experimental_option("mobileEmulation", mobile_emulation)
+             self.driver = webdriver.Chrome(executable_path='chromedriver.exe',chrome_options=options)  # 打开网页，将网页调整为手机模式
+             #self.driver = webdriver.Chrome()
              #self.driver.maximize_window()
              print(self.driver)
        except Exception:

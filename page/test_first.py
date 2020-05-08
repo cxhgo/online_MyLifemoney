@@ -3,7 +3,7 @@ import unittest
 from page.shouye_page import First
 from Base.logger import Log
 import time
-class Yscy(unittest.TestCase):
+class Yscy_First(unittest.TestCase):
 
      def setUp(self):
         print("开始测试")
@@ -98,5 +98,3 @@ class Yscy(unittest.TestCase):
      def tearDown(self):
          self.driver.quit()
 
-if __name__ == "__main__":
-    unittest.main()

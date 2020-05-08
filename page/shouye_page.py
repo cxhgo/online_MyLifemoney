@@ -10,7 +10,7 @@ class First(Base):
     fac_name = (By.XPATH, "//*[@id='root']/div[3]/div[2]/div[1]/div[1]/div/input")#姓名输入框
     fac2_man = (By.XPATH, "//*[@id='root']/div[3]/div[2]/div[1]/div[2]/div/div[1]")  # 性别选择男
     fac2_woman = (By.XPATH, "//*[@id='root']/div[3]/div[2]/div[1]/div[2]/div/div[2]")  # 性别选择女
-    fac3_brithday = (By.XPATH, "//*[@id='root']/div[3]/div[2]/div[1]/div[3]/div")  # 出生日期
+    fac3_brithday = (By.XPATH, "/html/body/div[1]/div[3]/div[2]/div[1]/div[3]/div")  # 出生日期
     fac4_count = (By.XPATH, "//*[@id='root']/div[3]/div[2]/div[2]/div")  # 首页立即测算
     comfirm_brithday =(By.XPATH,"/html/body/div[6]/div/span/div/div/div/div")# 出生日期提示语
     agree =(By.XPATH,"//*[@id='root']/div[3]/div[2]/div[3]/div/div[1]")# 用户协议勾选框
